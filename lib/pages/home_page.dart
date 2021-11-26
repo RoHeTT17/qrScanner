@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:qr_reader/models/scan_model.dart';
 
 import 'package:qr_reader/pages/direcciones_page.dart';
 import 'package:qr_reader/pages/historial_mapas_page.dart';
 import 'package:qr_reader/pages/mapa_page.dart';
+import 'package:qr_reader/providers/db_provider.dart';
+import 'package:qr_reader/providers/scans_list_provider.dart';
 
 import 'package:qr_reader/providers/ui_provider.dart';
 
@@ -23,7 +26,15 @@ class HomeScreen extends StatelessWidget {
         actions: [
           IconButton(
             icon: Icon(Icons.delete_forever),
-            onPressed: (){}, 
+            onPressed: (){
+
+              /*final scanProvider = Provider.of<ScanListProvider>(context,listen: false);
+              scanProvider.borrarTodos();*/
+
+              //Esta es otra forma de hacerlo
+              Provider.of<ScanListProvider>(context,listen: false).borrarTodos();
+
+            },
             )
         ],
       ),
@@ -46,15 +57,29 @@ class _HomePageBody extends StatelessWidget {
     // Cambiar para mostrar la página respectiva
     final currentIndex = uiProvider.selectedMenuOpt;
 
+
+    //temporal para probar que esta funcionan la creación de la BD
+    //final tempScan = new ScanModel(valor: 'http://google.com');
+    //DBProvider.db.getScanByID(4).then((scan) => print(scan.valor));
+
+    //prueba de borrar todos los scans
+    //DBProvider.db.deleteAllScan().then(print);
+
+    //Usar el ScanListProvider
+    //el lsiten en false porque no queremos que se redibjue a este nivel
+    final scanListProvider = Provider.of<ScanListProvider>(context,listen: false);
+
     switch (currentIndex) {
       case 0:
+          scanListProvider.cargarScanByType('geo');
           return MapaScreen();
         break;
       case 1:
+          scanListProvider.cargarScanByType('http');
           return DireccionesScreen();
         break;        
       default:
-        return HistorialMapasScreen();
+        return MapaScreen();
     }
   }
 }

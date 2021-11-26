@@ -1,6 +1,3 @@
-
-
-
 import 'package:flutter/material.dart';
 
 class UiProvider extends ChangeNotifier{
@@ -12,6 +9,7 @@ class UiProvider extends ChangeNotifier{
   }
 
   set selectedMenuOpt (int index){
+    //print(index);
     this._selectedMenuOpt = index;
     notifyListeners();
   }
