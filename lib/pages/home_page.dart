@@ -3,8 +3,8 @@ import 'package:provider/provider.dart';
 import 'package:qr_reader/models/scan_model.dart';
 
 import 'package:qr_reader/pages/direcciones_page.dart';
-import 'package:qr_reader/pages/historial_mapas_page.dart';
-import 'package:qr_reader/pages/mapa_page.dart';
+import 'package:qr_reader/pages/mapas_page.dart';
+import 'package:qr_reader/pages/mapa_historial_page.dart';
 import 'package:qr_reader/providers/db_provider.dart';
 import 'package:qr_reader/providers/scans_list_provider.dart';
 
@@ -71,15 +71,22 @@ class _HomePageBody extends StatelessWidget {
 
     switch (currentIndex) {
       case 0:
+
+        //final tempScan = new ScanModel(valor: '15.33,15.66');
+        //DBProvider.db.nuevoScan(tempScan);
+
           scanListProvider.cargarScanByType('geo');
-          return MapaScreen();
+          return HistorialMapaScreen();
         break;
       case 1:
+          //final tempScan = new ScanModel(valor: 'http://google.com');
+          //DBProvider.db.nuevoScan(tempScan);
+
           scanListProvider.cargarScanByType('http');
           return DireccionesScreen();
         break;        
       default:
-        return MapaScreen();
+        return HistorialMapaScreen();
     }
   }
 }

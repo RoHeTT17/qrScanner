@@ -4,7 +4,7 @@ import 'package:qr_reader/providers/scans_list_provider.dart';
 import 'package:qr_reader/widgets/scan_tiles.dart';
 
 
-class MapaScreen extends StatelessWidget {
+class HistorialMapaScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {

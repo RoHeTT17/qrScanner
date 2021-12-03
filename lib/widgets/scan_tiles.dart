@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:qr_reader/providers/scans_list_provider.dart';
+import 'package:qr_reader/utils/utils.dart';
 
 class ScanTiles extends StatelessWidget {
 
@@ -16,7 +17,7 @@ class ScanTiles extends StatelessWidget {
     //Aquí si se necesita que se redibuje el widget al haber cambios, por eso no esta el párametro de listen: false
     final scanListProvider = Provider.of<ScanListProvider>(context);
 
-    //támbien se puede hacer esot para no escribir todo el nombre
+    //támbien se puede hacer esto para no escribir todo el nombre
     final scan = scanListProvider.scans;
 
     return ListView.builder(
@@ -39,7 +40,7 @@ class ScanTiles extends StatelessWidget {
             title: Text(scanListProvider.scans[index].valor),
             subtitle: Text('ID: '+scanListProvider.scans[index].id.toString()),
             trailing: Icon (Icons.keyboard_arrow_right),
-            onTap: (){},
+            onTap: () => launchURL(context, scanListProvider.scans[index]),
           ),
         )
     );

@@ -4,6 +4,8 @@
 
 import 'dart:convert';
 
+import 'package:google_maps_flutter/google_maps_flutter.dart' show LatLng;
+
 //Recibe el json string y crea una instanci del modelo
 ScanModel scanModelFromJson(String str) => ScanModel.fromJson(json.decode(str));
 
@@ -38,4 +40,15 @@ class ScanModel {
         "tipo": tipo,
         "valor": valor,
     };
+
+    LatLng getLatLon(){
+
+        //1. Quitar la palabra "geo:", depués obtener un arreglo con las coordenadas
+        final latLong = this.valor.substring(4).split(",");
+        //2. Parsear el arreglo , de acuerdo a su posición
+        final lat = double.parse(latLong[0]);
+        final lon = double.parse(latLong[1]);
+
+        return LatLng(lat, lon);
+    }
 }

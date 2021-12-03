@@ -12,7 +12,7 @@ class ScanListProvider extends ChangeNotifier{
    //opción seleccionada
    String tipoSeleccionado = 'http';
 
-   nuevoScan (String valor) async {
+   Future<ScanModel> nuevoScan (String valor) async {
 
      //se crea la instancia del objeto
      final nuevoScan = new ScanModel(valor: valor);
@@ -30,6 +30,8 @@ class ScanListProvider extends ChangeNotifier{
        //notificar a los listener que se hizo un cambio, para que los widget se redibujen
        notifyListeners();
      }
+
+     return nuevoScan;
    }
 
    cargarAllScans() async{
