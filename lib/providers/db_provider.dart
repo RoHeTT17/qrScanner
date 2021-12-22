@@ -106,14 +106,14 @@ class DBProvider{
 
     final res = await db!.insert('Scans', nuevoScan.toJson());
 
-    //Path de donde almacenaremos la base de datos
+    /*//Path de donde almacenaremos la base de datos
     Directory documentsDirectory = await getApplicationDocumentsDirectory();
 
     //El join viene del import 'package:path/path.dart';
     final path = join(documentsDirectory.path,'ScansDB.db');
     
     print('path BD: '+path);
-    print(res);
+    print(res);*/
 
     return res;
 

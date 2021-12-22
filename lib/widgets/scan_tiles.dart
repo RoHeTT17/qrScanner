@@ -31,6 +31,7 @@ class ScanTiles extends StatelessWidget {
             Provider.of<ScanListProvider>(context,listen: false)
                 .borrarScanPorID(scanListProvider.scans[index].id!);
           } ,
+          direction: DismissDirection.endToStart,
           child: ListTile(
             leading: Icon(
               this.tipo == 'http'
